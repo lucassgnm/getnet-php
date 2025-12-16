@@ -155,7 +155,7 @@ class BrandCryptToken
      */
     public function setAmount($amount)
     {
-        $this->amount = (float) $amount;
+        $this->amount = (int) (string) ($amount * 100);
         return $this;
     }
 
