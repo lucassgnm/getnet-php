@@ -6,7 +6,8 @@ namespace Getnet\API;
  *
  * @package Getnet\API
  */
-class Tokenization implements \JsonSerializable {
+class Tokenization implements \JsonSerializable
+{
     use TraitEntity;
 
     // Bandeira a qual se destina o token: Mastercard
