@@ -104,4 +104,3 @@ class Tokenization implements \JsonSerializable
         return $this;
     }
 }
-?>
