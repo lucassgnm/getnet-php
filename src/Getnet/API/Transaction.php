@@ -42,6 +42,8 @@ class Transaction implements \JsonSerializable
 
     private $boleto;
 
+    private $tokenization;
+
     public function getSellerId()
     {
         return $this->seller_id;
@@ -291,6 +293,32 @@ class Transaction implements \JsonSerializable
     public function setBoleto(Boleto $boleto)
     {
         $this->boleto = $boleto;
+
+        return $this;
+    }
+
+    /**
+     * @return Tokenization
+     */
+    public function tokenization()
+    {
+        $tokenization = new Tokenization();
+        $this->setTokenization($tokenization);
+
+        return $tokenization;
+    }
+
+    /**
+     * @return Tokenization|null
+     */
+    public function getTokenization()
+    {
+        return $this->tokenization;
+    }
+
+    public function setTokenization(Tokenization $tokenization)
+    {
+        $this->tokenization = $tokenization;
 
         return $this;
     }

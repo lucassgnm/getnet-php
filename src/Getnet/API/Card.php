@@ -132,10 +132,16 @@ class Card implements \JsonSerializable
         return $this->number_token;
     }
 
-    // TODO maybe remove entity Token.
-    public function setNumberToken(Token $token)
+    /**
+     * @param Token|string $token
+     */
+    public function setNumberToken($token)
     {
-        $this->number_token = (string) $token->getNumberToken();
+        if ($token instanceof Token) {
+            $token = $token->getNumberToken();
+        }
+
+        $this->number_token = (string) $token;
 
         return $this;
     }
