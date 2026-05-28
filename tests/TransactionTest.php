@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use Getnet\API\BrandCryptToken;
+use Getnet\API\Card;
 use Getnet\API\PixTransaction;
 use Getnet\API\Transaction;
 
@@ -57,5 +59,31 @@ final class TransactionTest extends TestBase
         $this->assertSame(14220, $pixTransaction->getAmount());
         $pixTransaction->setAmount('142.2');
         $this->assertSame(14220, $pixTransaction->getAmount());
+    }
+
+    public function testBrandCryptTokenAmount(): void
+    {
+        $brandCryptToken = new BrandCryptToken(
+            'network_token_id',
+            BrandCryptToken::TYPE_MERCHANT,
+            BrandCryptToken::TYPE_VISA,
+            76.89,
+            'customer_id',
+            'customer@email.com.br',
+            'VISA'
+        );
+
+        $this->assertSame(7689, $brandCryptToken->getAmount());
+
+        $brandCryptToken->setAmount('142.2');
+        $this->assertSame(14220, $brandCryptToken->getAmount());
+    }
+
+    public function testCardAcceptsNetworkTokenIdAsNumberToken(): void
+    {
+        $card = new Card();
+        $card->setNumberToken('network_token_id');
+
+        $this->assertSame('network_token_id', $card->getNumberToken());
     }
 }
